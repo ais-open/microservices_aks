@@ -1,0 +1,13 @@
+﻿.brLable1{
+    font:bold;
+    font-family:Arial;
+    font-weight:400;
+    font-size:small;
+    color:gray;
+}
+.brBoldLable{
+    font:bold;
+    font-family:Arial;
+    font-weight:800;
+    font-size:large
+}
