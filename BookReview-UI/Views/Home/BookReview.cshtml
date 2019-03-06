@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "BookReview";
+}
+<div class="row" data-bind="visible: books().length > 0">
+    <div class="col-12 col-md-12">
+        <div data-bind="foreach: books">
+            <div class="row mb-2">
+                <div class="col-md-2 text-center">
+                    <img class="img-thumbnail" style="width:200px; box-shadow:0px 2px 3px #999" data-bind="attr: {src: 'images/' + $data.image}">
+                </div>
+
+                <div class="col-md-3">
+                    <span style="display:none" class="boldFont600 text-danger" service="bookServices">BOOK SERVICES NOT AVAILABLE</span><br />
+                    <span class="boldFont400" data-bind="text: $data.name"></span><br>
+                    <span class="boldFont400">By: </span>
+                    <span class="normalFontGray300" data-bind="text: $data.authorName"></span><br>
+                    <span class="boldFont400">Publisher: </span>
+                    <span class="normalFontGray300" data-bind="text: $data.publisherName"></span><br>
+                    <span class="boldFont400">Released: </span>
+                    <span class="normalFontGray300" data-bind="text: $data.publicationYear"></span><br>
+                    <span class="boldFont400">Description: </span>
+                    <span class="normalFont300" data-bind="text: $data.details.substring(0,300) + '...'"></span><br>
+                </div>
+                <div class="col-md-2 vl">
+                    <span class="text-danger boldFont400">Overall Rating: </span>
+                    <span style="display:none" class="boldFont600 text-danger" service="ratingServices">RATING SERVICES NOT AVAILABLE</span><br />
+                    <img style="width:90px; height:17px" class="" data-bind="attr: {src: 'images/' + $parent.getRating($data.isbn) + 'star.png'}"><br><hr />
+
+                    <span class="text-warning boldFont400">Category: </span>
+                    <span style="display:none" class="boldFont600 text-danger" service="categoryServices">CATEGORY SERVICES NOT AVAILABLE</span> <br />
+                    <span class="text-warning boldFont400" data-bind="text: $parent.getCategory($data.isbn)"></span><br><hr />
+                    
+                    <span class="text-success boldFont400">Listed as Best Seller on: </span>
+                    <span style="display:none" class="boldFont600 text-danger" service="bestSellerServices">BEST SELLER SERVICES NOT AVAILABLE</span><br />
+                    <ul data-bind="foreach: $parent.getBestSeller($data.isbn)">
+                        <li class="text-success normalFont300" data-bind="text: $data"></li>
+                    </ul>
+                    <hr />
+                    <a data-bind="attr: {href: $parent.getBuyOnlinelink($data.isbn)}" target="_blank" class="btn btn-light">Buy Now</a>
+                </div>
+                <div class="col-md-5 vl">
+                    <span style="display:none" class="boldFont600 text-danger" service="bookReviewServices">REVIEW SERVICES NOT AVAILABLE</span><br />
+                    <span class="text-info">Review Comments: </span>
+                    <div data-bind="foreach: $parent.getReview($data.isbn)">
+                        <div class="mb-2">
+                            <div>
+                                <span class="text-info">By: </span><span class="text-info" data-bind="text: reviewedBy"></span>
+                                <span class="text-info">Rating: </span><img style="width:90px; height:17px" class="mr-2" data-bind="attr: {src: 'images/' + rating + 'star.png'}">
+                                <span class="text-info">On: </span><span class="text-info" data-bind="text: createdOn"></span>
+                            </div>
+                            <div>
+                                <span class="text-info" data-bind="text: reviewComments"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="button" class="btn btn-info" value="Submit Review" data-bind="click: $parent.openReviewCommentModal.bind($data)" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
+<span id="loadingData" data-bind="visible: books().length <= 0" class="boldFont600 text-success text-center">LOADING DATA...</span>
+<span style="display:none" class="boldFont600 text-danger text-center" service="bookServices">SERVICES NOT AVAILABLE</span><br />
+<div id="reviewSubmitModal" role="dialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header head bg-dark text-white">Submit Review</div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Comments:</label>
+                    <textarea data-bind="value: reviewComment" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Rating:</label>
+                    <input type="number" data-bind="value: rating" class="form-control" min="1" max="5" />
+                </div>
+                <div class="form-group">
+                    <label>Review By:</label>
+                    <input type="text" data-bind="value: reviewedBy" class="form-control" />
+                </div>
+            </div> <!-- /.modal-body -->
+            <div class="modal-footer">
+                <a class="btn btn-secondary pull-right" data-dismiss="modal" style="margin-left:20px"><i class="fa fa-stop" data-dismiss="modal"></i>Cancel</a>
+                <a class="btn btn-success pull-right" data-bind="enable: validateModal, click: submitReview" data-dismiss="modal"><i class="fa fa-times"></i>Submit</a>
+            </div> <!-- /.modal-footer -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+@section scripts
+    {
+    <script src='~/lib/BookReview.js'></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var serviceUris = {
+                    BookEndpoint: '@ViewBag.BookEndPoint',
+                    RatingEndPoint: '@ViewBag.RatingEndPoint',
+                    ReviewEndPoint: '@ViewBag.ReviewEndPoint',
+                    BestSellerEndPoint: '@ViewBag.BestSellerEndPoint',
+                    BuyOnlineEndPoint: '@ViewBag.BuyOnlineEndPoint',
+                    CategoryEndPoint: '@ViewBag.CategoryEndPoint'
+                }
+                ko.applyBindings(new cbo.BookReviewViewModel({
+                    ko: ko
+                }, serviceUris
+                ));
+            });
+    </script>
+}

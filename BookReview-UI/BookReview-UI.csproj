@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\0star.png" />
+    <None Include="wwwroot\images\1star.png" />
+    <None Include="wwwroot\images\2star.png" />
+    <None Include="wwwroot\images\3star.png" />
+    <None Include="wwwroot\images\4star.png" />
+    <None Include="wwwroot\images\5star.png" />
+    <None Include="wwwroot\images\a-clash-of-kings-a-song-of-ice-and-fire-book-2-400x400-imadhkz8mymsdv46.jpeg" />
+    <None Include="wwwroot\images\a-degree-in-death-400x400-imadfw74gfzsbbng.jpeg" />
+    <None Include="wwwroot\images\artemis-fowl-and-the-last-guardian-400x400-imadb8fthzuzh7uv.jpeg" />
+    <None Include="wwwroot\images\can-love-happen-twice-400x400-imadarucay5gxr5g.jpeg" />
+    <None Include="wwwroot\images\dragon-reborn-wheel-of-time-book-3-400x400-imadz74fbteazkjv.jpeg" />
+    <None Include="wwwroot\images\eragon-400x400-imada5h5ufgtehvr.jpeg" />
+    <None Include="wwwroot\images\foundation-400x400-imadekrnpmmnqtwz.jpeg" />
+    <None Include="wwwroot\images\game-of-thrones-a-song-of-ice-and-fire-book-1-400x400-imadhktfugaghygp.jpeg" />
+    <None Include="wwwroot\images\gone-girl-400x400-imadehcn4erysgcg.jpeg" />
+    <None Include="wwwroot\images\harry-potter-and-the-deathly-hallows-signature-edition-400x400-imadbkz2jhz5f6su.jpeg" />
+    <None Include="wwwroot\images\jonathan-livingston-seagull-a-story-400x400-imadat8fmeyfbumn.jpeg" />
+    <None Include="wwwroot\images\jurassic-park-400x400-imadgdeh2jukhcj2.jpeg" />
+    <None Include="wwwroot\images\kane-chronicles-the-throne-of-fire-400x400-imadgu4geqbynm4r.jpeg" />
+    <None Include="wwwroot\images\love-endeavors-400x400-imadhepbzwdzvsch.jpeg" />
+    <None Include="wwwroot\images\love-stories-that-touched-my-heart-400x400-imadjvruag5rzgxn.jpeg" />
+    <None Include="wwwroot\images\mage-s-blood-the-montide-quartet-400x400-imadfzka4zxhgg7z.jpeg" />
+    <None Include="wwwroot\images\malgudi-days-400x400-imadat2auzypym2e.jpeg" />
+    <None Include="wwwroot\images\malgudi-schooldays-400x400-imadjkpq2mtakhcj.jpeg" />
+    <None Include="wwwroot\images\manhattan-in-reverse-400x400-imadgucbxj96mfcx.jpeg" />
+    <None Include="wwwroot\images\midnight-s-children-400x400-imadjsauh2gvkhut.jpeg" />
+    <None Include="wwwroot\images\murder-on-orient-express-400x400-imadesm3hqnapjyw.jpeg" />
+    <None Include="wwwroot\images\noonshade-400x400-imadkv44wkhbn6um.jpeg" />
+    <None Include="wwwroot\images\off-armageddon-reef-400x400-imadguwwwzrfu64z.jpeg" />
+    <None Include="wwwroot\images\oliver-s-story-it-takes-someone-very-special-to-forget-the-love-of-your-life-400x400-imadh6vgwb2z45ht.jpeg" />
+    <None Include="wwwroot\images\salvation-of-a-saint-400x400-imadg558fdzkvrxs.jpeg" />
+    <None Include="wwwroot\images\solar-400x400-imadhhbpk9rmc8w6.jpeg" />
+    <None Include="wwwroot\images\someone-like-you-400x400-imadht2fay9nmfuf.jpeg" />
+    <None Include="wwwroot\images\the-air-war-400x400-imadbhrmd4tdgqmd.jpeg" />
+    <None Include="wwwroot\images\the-edge-of-the-machete-400x400-imadd2ekeqhgatcs.jpeg" />
+    <None Include="wwwroot\images\the-fountainhead-400x400-imad9wngvsevjnfy.jpeg" />
+    <None Include="wwwroot\images\the-hit-400x400-imadku9feqx8zkjz.jpeg" />
+    <None Include="wwwroot\images\the-krishna-key-400x400-imadayvmeqfbbwyg.jpeg" />
+    <None Include="wwwroot\images\the-lord-of-the-rings-400x400-imadez6ppyjy36mh.jpeg" />
+    <None Include="wwwroot\images\the-lost-symbol-400x400-imadaryjh8guqyah.jpeg" />
+    <None Include="wwwroot\images\the-murder-of-roger-ackroyd-400x400-imadag4c3rhffhhd.jpeg" />
+    <None Include="wwwroot\images\the-secret-wish-list-400x400-imadkuygztrkfhpz.jpeg" />
+    <None Include="wwwroot\images\the-taj-conspiracy-400x400-imad8makhs7eznhz.jpeg" />
+    <None Include="wwwroot\images\the-third-bullet-400x400-imadzrf6vedwtpj9.jpeg" />
+    <None Include="wwwroot\images\thea-stilton-and-the-secret-of-the-old-castle-400x400-imadgd5mr9vrrbmd.jpeg" />
+    <None Include="wwwroot\images\to-kill-a-mockingbird-400x400-imadat2amn7wzuqv.jpeg" />
+    <None Include="wwwroot\images\train-to-pakistan-400x400-imadas3h89nnmwkh.jpeg" />
+    <None Include="wwwroot\images\uff-ye-emotions-a-collection-of-award-winning-love-stories-400x400-imadhesu5scdsekz.jpeg" />
+    <None Include="wwwroot\images\wake-400x400-imadbhrnrmj3wbrn.jpeg" />
+    <None Include="wwwroot\images\wheel-of-time-14-a-memory-of-light-400x400-imadgaw4ecpxfguc.jpeg" />
+    <None Include="wwwroot\lib\BookReview.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
