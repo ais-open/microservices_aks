@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookReview-BestSeller-WebApi", "BookReview-BestSeller-WebApi\BookReview-BestSeller-WebApi.csproj", "{17CF7131-5685-4552-B4CF-CA493DAA1328}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BookReview-BestSeller-Database", "BookReview-BestSeller-Database\BookReview-BestSeller-Database.sqlproj", "{DCC72CF9-677F-490E-9A75-21E98307721B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17CF7131-5685-4552-B4CF-CA493DAA1328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CF7131-5685-4552-B4CF-CA493DAA1328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CF7131-5685-4552-B4CF-CA493DAA1328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CF7131-5685-4552-B4CF-CA493DAA1328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC72CF9-677F-490E-9A75-21E98307721B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5DA8F77-77FD-4312-87A7-543F4955C7B9}
+	EndGlobalSection
+EndGlobal
