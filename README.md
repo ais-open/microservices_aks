@@ -1,5 +1,5 @@
-# Microservices AKS
-## Presented in session titled, T06 - Microservices with Azure Kubernetes Services (AKS)
+## Microservices AKS
+### T06 - Microservices with Azure Kubernetes Services (AKS)
 ### VSLive March 5 2019, Las Vegas - 9:30 AM
 ### By Vishwas Lele & Gautam Shah
 
