@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookreview-ui-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookreview-ui
+  template:
+    metadata:
+      labels:
+        app: bookreview-ui       
+    spec:
+      containers:
+      - name: bookreview-ui
+        image: microservicesaks.azurecr.io/bookreview-ui:v1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".05"
+            memory: "64M"
+          limits:
+            cpu: ".1"
+            memory: "128M"
+        ports:
+        - containerPort: 80
+        env:
+          - name: BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-cmp
+                key: BASE_URL
+          - name: BOOK_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: BOOK_API
+          - name: CATEGORY_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: CATEGORY_API
+          - name: BUYONLINE_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: BUYONLINE_API
+          - name: BESTSELLER_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: BESTSELLER_API
+          - name: RATING_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: RATING_API
+          - name: REVIEWCOMMENT_API
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-ui-cmp
+                key: REVIEWCOMMENT_API
+      imagePullSecrets:
+        - name: microservicesaks-acr-sec        
+  

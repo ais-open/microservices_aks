@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bookreview-onlinestore-db-dep
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bookreview-onlinestore-db
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: bookreview-onlinestore-db
+        image: microservicesaks.azurecr.io/microsoft/mssql
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".2"
+            memory: "600M"
+          limits:
+            cpu: ".3"
+            memory: "640M"            
+        ports:
+        - containerPort: 1433
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bookreview-onlinestore-db-sec
+              key: SA_PASSWORD 
+        volumeMounts:
+        - name: bookreview-onlinestore-db-vol
+          mountPath: /var/opt/mssql
+      volumes:
+      - name: bookreview-onlinestore-db-vol
+        persistentVolumeClaim:
+          claimName: bookreview-onlinestore-db-pvc
+      imagePullSecrets:
+        - name: microservicesaks-acr-sec

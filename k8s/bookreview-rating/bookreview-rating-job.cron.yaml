@@ -1,0 +1,44 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: bookreview-rating-job-crn
+  labels:
+    app: bookreview-rating-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: bookreview-rating-job
+            image: microservicesaks.azurecr.io/bookreview-rating-job:v1
+            imagePullPolicy: Always
+            env:
+            - name: DB_CONNECTION
+              valueFrom:
+                configMapKeyRef:
+                  name: bookreview-rating-job-cmp
+                  key: DB_CONNECTION
+            - name: SERVICEBUS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bookreview-rating-job-cmp
+                  key: SERVICEBUS_URL
+            - name: SERVICEBUS_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: bookreview-rating-job-cmp
+                  key: SERVICEBUS_TOKEN
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: microservicesaks-acr-sec
+          nodeSelector:
+            kubernetes.io/role: agent
+            beta.kubernetes.io/os: linux
+            type: virtual-kubelet
+          tolerations:
+          - key: virtual-kubelet.io/provider
+            operator: Exists
+          - key: azure.com/aci
+            effect: NoSchedule

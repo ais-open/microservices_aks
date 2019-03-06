@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookreview-book-api-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookreview-book-api
+  template:
+    metadata:
+      labels:
+        app: bookreview-book-api        
+    spec:
+      containers:
+      - name: bookreview-book-api
+        image: microservicesaks.azurecr.io/bookreview-book-api:v1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".05"
+            memory: "64M"
+          limits:
+            cpu: ".1"
+            memory: "128M"
+        ports:
+        - containerPort: 80
+        env:
+          - name: DB_CONNECTION
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-book-cmp
+                key: DB_CONNECTION
+      imagePullSecrets:
+        - name: microservicesaks-acr-sec    

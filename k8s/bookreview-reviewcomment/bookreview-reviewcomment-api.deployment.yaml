@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookreview-reviewcomment-api-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookreview-reviewcomment-api
+  template:
+    metadata:
+      labels:
+        app: bookreview-reviewcomment-api        
+    spec:
+      containers:
+      - name: bookreview-reviewcomment-api
+        image: microservicesaks.azurecr.io/bookreview-reviewcomment-api:v1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".05"
+            memory: "64M"
+          limits:
+            cpu: ".1"
+            memory: "128M"            
+        ports:
+        - containerPort: 80
+        env:
+          - name: DB_CONNECTION
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-reviewcomment-cmp
+                key: DB_CONNECTION
+          - name: SERVICEBUS_URL
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-reviewcomment-cmp
+                key: SERVICEBUS_URL
+          - name: SERVICEBUS_SASTOKEN
+            valueFrom:
+              configMapKeyRef:
+                name: bookreview-reviewcomment-cmp
+                key: SERVICEBUS_SASTOKEN
+      imagePullSecrets:
+        - name: microservicesaks-acr-sec    

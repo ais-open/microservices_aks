@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookreview-onlinestore-db-svc
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  
+spec:
+  selector:
+    app: bookreview-onlinestore-db
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: LoadBalancer
