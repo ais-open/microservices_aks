@@ -1,5 +1,5 @@
 #=============================================================================
-# ! APPliCATION KUBERNETES SETUP 
+# ! APPLICATION KUBERNETES SETUP 
 #=============================================================================
 
 
@@ -59,6 +59,34 @@ kubectl create configmap bookreview-book-cmp --from-env-file "./bookreview-book/
 kubectl apply -f "./bookreview-book/bookreview-book-api.deployment.yaml"
 #=============================================================================
 
+#=============================================================================
+# ! UI MICROSERVICE
+# SERVICE
+kubectl apply -f "./bookreview-ui/bookreview-ui.service.yaml"
+
+# CONFIG FOR API URLs 
+kubectl create configmap bookreview-ui-cmp --from-env-file "./bookreview-ui/bookreview-ui.properties"
+
+# DEPLOY PODS
+kubectl apply -f "./bookreview-ui/bookreview-ui.deployment.yaml"
+#=============================================================================
+
+#=============================================================================
+# ! INGRESS TIED TO PUBLIC IP  
+# CREATE PUBLIC STATIC IP  
+$ingressIP = az network public-ip show -g "MC_microservicesaks-rgp_microservicesaks_eastus" -n "bookreview-ingress-ip" -o tsv --query "{address: ipAddress}"
+
+# SAVE INGRESS URL TO CONFIG
+( Get-Content ./app.properties ) | ForEach-Object { $_ -replace "BASE_URL=.+" , "BASE_URL=http://$ingressIP" } | Set-Content "./app.properties"
+kubectl create configmap bookreview-cmp --from-env-file ./app.properties
+
+# CREATE NGINX INGRESS CONTROLLER
+helm install stable/nginx-ingress --set controller.replicaCount=2,controller.name=microservicesaks,controller.service.loadBalancerIP=$ingressIP
+
+# CREATE K8S INGRESS & CONFIGURE ROUTES
+kubectl apply -f "./app.ingress.yaml"
+#=============================================================================
+
 
 #=============================================================================
 # ! REVIEWCOMMENT MICROSERVICE - SERVICE BUS TOKEN  
@@ -104,40 +132,6 @@ kubectl create configmap bookreview-rating-job-cmp --from-env-file "./bookreview
 # CRON JOB
 kubectl apply -f "./bookreview-rating/bookreview-rating-job.cron.yaml"
 #=============================================================================
-
-
-#=============================================================================
-# ! INGRESS TIED TO PUBLIC IP  
-# CREATE PUBLIC STATIC IP  
-$ingressIP = "...ingress public ip address..."
-# az network public-ip show -g "MC_microservicesaks-rgp_microservicesaks_eastus" -n "bookreview-ingress-ip" -o tsv --query "{address: ipAddress}"
-
-# SAVE INGRESS URL TO CONFIG
-( Get-Content ./app.properties ) | ForEach-Object { $_ -replace "BASE_URL=.+" , "BASE_URL=http://$ingressIP" } | Set-Content "./app.properties"
-kubectl create configmap bookreview-cmp --from-env-file ./app.properties
-
-# CREATE NGINX INGRESS CONTROLLER
-helm install stable/nginx-ingress --set controller.replicaCount=2,controller.name=microservicesaks,controller.service.loadBalancerIP=$ingressIP
-
-# CREATE K8S INGRESS & CONFIGURE ROUTES
-kubectl apply -f "./app.ingress.yaml"
-#=============================================================================
-
-
-#=============================================================================
-# ! UI MICROSERVICE
-# SERVICE
-kubectl apply -f "./bookreview-ui/bookreview-ui.service.yaml"
-
-# CONFIG FOR API URLs 
-kubectl create configmap bookreview-ui-cmp --from-env-file "./bookreview-ui/bookreview-ui.properties"
-
-# DEPLOY PODS
-kubectl apply -f "./bookreview-ui/bookreview-ui.deployment.yaml"
-#=============================================================================
-
-
-
 
 
 #=============================================================================
