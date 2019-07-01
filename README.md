@@ -1,6 +1,6 @@
 ## Microservices AKS
 ### Microservices with Azure Kubernetes Services (AKS)
-### By Vishwas Lele & Gautam Shah
+### By Vishwas Lele & Gautam Shah & Srinivas Pujari
 
 All .ps1 files can be executed in PowerShell ISE or PowerShell Command Prompt. PowerShell comes installed on Windows Desktop and Server. Go to Windows search and type "PowerShell ISE". Alternatively you can install and use PowerShell Extension in Visual Studio Code.
 
